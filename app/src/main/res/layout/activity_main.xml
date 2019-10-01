@@ -5,8 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    
+
+    <TextView
+        android:id="@+id/user_label"
+        android:text="@string/user_info_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintEnd_toEndOf="@id/destroy_btn"
+        app:layout_constraintStart_toStartOf="@id/destroy_btn"
+        app:layout_constraintBottom_toTopOf="@id/destroy_btn">
+    </TextView>
     <Button
+        android:id="@+id/destroy_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

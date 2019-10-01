@@ -8,4 +8,5 @@
     <string name="on_restart">Activity restarted</string>
     <string name="on_destroy">Activity destroyed</string>
     <string name="destroy_btn">destroy activity</string>
+    <string name="user_info_placeholder">· User info here ·</string>
 </resources>

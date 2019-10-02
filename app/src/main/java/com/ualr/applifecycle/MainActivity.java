@@ -10,19 +10,21 @@ import android.widget.TextView;
 
 import java.util.concurrent.Executors;
 
-// TODO 03. In your device/emulator access Settings > Developer options
-// TODO 04. Under Apps, turn ON "Don't keep activities"
-// TODO 05. Run the app and after 2-3 seconds press the home button to destroy activity
+// TODO 02. Create the LifecycleObserver class
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private DatabaseRepository database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         logMessage(R.string.on_create);
+        // TODO 04. We have to bind the observer to the lifecycle that we want to monitor
+        database = new DatabaseRepository(getLifecycle(), Executors.newSingleThreadExecutor());
+        getLifecycle().addObserver(database);
     }
 
     @Override
@@ -47,13 +49,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         logMessage(R.string.on_start);
-
-        DatabaseRepository database = new DatabaseRepository(Executors.newSingleThreadExecutor());
         database.getUser(new OnGetUserCallback() {
             @Override
             public void onGetUser(final String user) {
                 Log.d(TAG, String.format("Callback called. We retrive user: %s", user));
-
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
